@@ -1,0 +1,49 @@
+**Risk Score:** Low
+
+**Summary:**
+A Terraform plan has been generated to create a new VPC, subnet, security group, internet gateway, and network interface in AWS. The infrastructure changes planned include:
+
+* Creation of a new VPC (`main`) with a specified CIDR block (`10.10.0.0/16`)
+* Creation of a new subnet (`app_subnet`) within the VPC, with a specified CIDR block (`10.10.1.0/24`)
+* Creation of a new security group (`web_sg`) with specified ingress and egress rules
+* Creation of a new internet gateway (`igw`) and associating it with the VPC
+* Creation of a new network interface (`web_eni`) associated with the security group and subnet
+
+**Resources:**
+
+* aws_vpc.main
+* aws_subnet.app_subnet
+* aws_security_group.web_sg
+* aws_internet_gateway.igw
+* aws_network_interface.web_eni
+* aws_route_table.app_rt
+* aws_route_table_association.app_assoc
+* aws_default_security_group.default
+
+**Security Findings:**
+
+* **Finding:** The VPC is not configured with IPv6 support.
+* **Risk:** Medium
+* **Recommendation:** Enable IPv6 support in the VPC by updating the `enable_ipv6` attribute.
+
+* **Finding:** The security group allows outbound traffic to the entire internet.
+* **Risk:** High
+* **Recommendation:** Update the security group rules to only allow traffic to specified IP addresses or networks.
+
+**Cost Findings:**
+
+* **Finding:** The VPC has a default route table with a default destination route to the entire internet.
+* **Risk:** Low
+* **Recommendation:** Update the default route table to only allow traffic to specified IP addresses or networks.
+
+**Compliance / Best Practice Findings:**
+
+* **Finding:** The security group does not have a description.
+* **Risk:** Low
+* **Recommendation:** Add a description to the security group to improve visibility and understanding.
+
+**Production Approval Recommendation:**
+Not Approved
+
+**Beginner-Friendly Explanation:**
+This Terraform plan creates a new VPC, subnet, security group, internet gateway, and network interface in AWS. The infrastructure changes planned are intended to provide a basic networking setup for a web application. However, there are some security concerns that need to be addressed, such as allowing only specific IP addresses or networks to access the VPC. Additionally, the VPC is not configured with IPv6 support, which should be enabled to provide better security and flexibility.

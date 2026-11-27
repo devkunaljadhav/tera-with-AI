@@ -1,23 +1,12 @@
-# Terraform
+
 .terraform/
 *.tfstate
 *.tfstate.*
-*.tfplan
 tfplan
 tfplan.txt
-terraform.tfvars
-*.auto.tfvars
-*.auto.tfvars.json
-crash.log
-override.tf
-override.tf.json
-*_override.tf
-*_override.tf.json
-
-# Secrets
+ai-report.txt
+tflint.txt
+checkov.txt
+infracost.txt
+*_exit_code.txt
 .env
-.env.*
-!.env.example
-
-# OS files
-.DS_Store
